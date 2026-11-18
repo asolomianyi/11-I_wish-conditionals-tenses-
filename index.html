@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 4 Grammar Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: one slide at a time, header with progress, bottom nav. Travel-map palette: ink, sea, sun (textbook orange). */
+:root{
+  --ink:#16233f; --text:#1d2433; --muted:#4b5666; --paper:#f4f7f6; --card:#ffffff;
+  --line:#d5dfdf; --sea:#1d6b86; --sea-soft:#e3f0f3; --sun:#c9651a; --sun-soft:#fbeadb;
+  --good:#1f7a52; --good-soft:#e1f3ea; --bad:#b8372a; --bad-soft:#fbe5e2;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#e9eef5; --text:#dfe5ec; --muted:#a8b4c2; --paper:#111821; --card:#19222d;
+    --line:#2c3846; --sea:#5fb3cf; --sea-soft:#163240; --sun:#f0954a; --sun-soft:#3a2614;
+    --good:#4cc18c; --good-soft:#123326; --bad:#ef7a6e; --bad-soft:#3b1a17;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e9eef5; --text:#dfe5ec; --muted:#a8b4c2; --paper:#111821; --card:#19222d;
+  --line:#2c3846; --sea:#5fb3cf; --sea-soft:#163240; --sun:#f0954a; --sun-soft:#3a2614;
+  --good:#4cc18c; --good-soft:#123326; --bad:#ef7a6e; --bad-soft:#3b1a17;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--text);font-family:var(--body);font-size:19px;line-height:1.5;display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px;border-bottom:1px solid var(--line);background:var(--card)}
+.brand{font-family:var(--display);font-weight:700;color:var(--ink);font-size:17px}
+.brand b{color:var(--sun)}
+.topinfo{color:var(--muted);font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.progress{height:4px;background:var(--line)}
+.progress i{display:block;height:100%;background:var(--sun);width:0;transition:width .25s}
+main{flex:1;overflow-y:auto}
+.slide{display:none;max-width:1040px;margin:0 auto;padding:28px 24px 40px}
+.slide.on{display:block}
+h1,h2,h3{font-family:var(--display);color:var(--ink);text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5vw,54px);font-weight:800;line-height:1.05}
+h2{font-size:clamp(26px,3.4vw,36px);font-weight:800;line-height:1.1;margin-bottom:4px}
+h3{font-size:21px;font-weight:700;margin-bottom:6px}
+.kicker{font-family:var(--display);font-weight:700;color:var(--sun);text-transform:uppercase;letter-spacing:.08em;font-size:14px;margin-bottom:6px}
+.ua{display:block;color:var(--muted);font-size:16.5px;line-height:1.4;margin-top:2px}
+.ua.big{font-size:18px}
+p{margin:10px 0}
+.lead{font-size:21px;max-width:70ch}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.card.sea{border-top:5px solid var(--sea)}
+.card.sun{border-top:5px solid var(--sun)}
+.card.ink{border-top:5px solid var(--ink)}
+.formula{font-family:var(--display);font-weight:700;background:var(--sea-soft);color:var(--ink);border-radius:8px;padding:8px 14px;display:inline-block;max-width:100%;margin:8px 0;font-size:20px;overflow-wrap:anywhere}
+.formula.alt{background:var(--sun-soft)}
+.ex{margin:8px 0;padding-left:14px;border-left:3px solid var(--line)}
+em.k,td em,.ex em,.w em{font-style:normal;font-weight:700;color:var(--sea)}
+.tag{display:inline-block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 10px;border-radius:999px;background:var(--sun-soft);color:var(--sun);margin-bottom:6px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin-top:14px}
+table{border-collapse:collapse;width:100%;background:var(--card)}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);color:var(--ink);background:var(--sea-soft);font-size:16px}
+tr:last-child td{border-bottom:0}
+tr.grp td{background:var(--sun-soft);font-family:var(--display);font-weight:700;color:var(--sun);text-transform:uppercase;letter-spacing:.06em;font-size:14px;padding:6px 14px}
+td.tr{color:var(--muted)}
+td.real{color:var(--muted)}
+td.wish{font-weight:600}
+.wrong{color:var(--bad);text-decoration:line-through}
+.right{color:var(--good);font-weight:700}
+.note{background:var(--sun-soft);border-radius:10px;padding:14px 18px;margin-top:16px}
+.note.sea{background:var(--sea-soft)}
+.steps{display:grid;gap:10px;margin-top:12px;counter-reset:st}
+.step{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;counter-increment:st}
+.step::before{content:counter(st);width:36px;height:36px;border-radius:50%;background:var(--sun);color:#fff;font-family:var(--display);font-weight:800;display:grid;place-items:center;font-size:18px}
+.step .res{font-weight:700;color:var(--sea)}
+.ladder{display:grid;grid-template-columns:1fr auto 1fr;gap:8px 14px;align-items:center;margin-top:10px}
+.ladder .a,.ladder .b{border-radius:8px;padding:8px 12px}
+.ladder .a{background:var(--card);border:1px solid var(--line)}
+.ladder .b{background:var(--sea-soft);font-weight:700;color:var(--ink)}
+.ladder .arr{color:var(--sun);font-weight:800;font-size:22px}
+.ladder .h{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.topics{counter-reset:t;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:22px}
+.topics button{counter-increment:t;text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;cursor:pointer}
+.topics button:hover{border-color:var(--sea)}
+.topics button::before{content:counter(t);display:block;font-family:var(--display);font-weight:800;color:var(--sun);font-size:28px;line-height:1}
+.topics strong{display:block;font-family:var(--display);color:var(--ink);font-size:19px;margin-top:6px}
+.flow{display:grid;gap:10px;margin-top:12px}
+.flow .qq{display:grid;grid-template-columns:1fr auto 260px;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.flow .arr{color:var(--sun);font-weight:800;font-size:22px}
+.flow .ans{background:var(--sea-soft);border-radius:8px;padding:8px 12px;font-family:var(--display);font-weight:700;color:var(--ink)}
+/* exercises */
+.task{margin-top:6px;color:var(--muted)}
+.items{display:grid;gap:10px;margin-top:16px;counter-reset:q}
+.item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;counter-increment:q}
+.item.ok{border-color:var(--good);background:var(--good-soft)}
+.item.no{border-color:var(--bad);background:var(--bad-soft)}
+.q{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.q::before{content:counter(q) ".";font-weight:700;color:var(--sun);min-width:22px}
+.q .ctx{color:var(--muted);width:100%;padding-left:32px;margin-top:-4px;font-size:16.5px;order:-1}
+.opts{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0 32px}
+.opt{font:inherit;font-size:17px;padding:6px 14px;border-radius:999px;border:1.5px solid var(--sea);background:transparent;color:var(--sea);cursor:pointer;font-weight:600}
+.opt:hover:not(:disabled){background:var(--sea-soft)}
+.opt:disabled{cursor:default;opacity:.5}
+.opt.pick-ok{background:var(--good);border-color:var(--good);color:#fff;opacity:1}
+.opt.pick-no{background:var(--bad);border-color:var(--bad);color:#fff;opacity:1}
+.opt.show-ok{border-color:var(--good);color:var(--good);opacity:1}
+input.gap{font:inherit;font-size:18px;padding:3px 8px;border:none;border-bottom:2px solid var(--sea);background:var(--sea-soft);color:var(--ink);border-radius:4px 4px 0 0;min-width:120px}
+input.gap:focus{outline:2px solid var(--sun);outline-offset:2px}
+.item.ok input.gap{border-color:var(--good)}
+.item.no input.gap{border-color:var(--bad)}
+.mini{font:inherit;font-size:15px;font-weight:700;padding:4px 12px;border-radius:8px;border:0;background:var(--sea);color:#fff;cursor:pointer;margin-left:6px}
+.fb{display:none;margin:10px 0 0 32px;font-size:17px;background:var(--card);border-radius:8px;padding:10px 14px}
+.item.ok .fb,.item.no .fb{display:block}
+.fb .v{font-weight:800}
+.item.ok .fb .v{color:var(--good)}
+.item.no .fb .v{color:var(--bad)}
+.fb b{color:var(--ink)}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.btn{font:inherit;font-weight:700;font-size:17px;padding:9px 18px;border-radius:10px;border:0;background:var(--sea);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--sea);border:1.5px solid var(--sea)}
+.score{font-family:var(--display);font-weight:800;color:var(--ink);font-size:20px;font-variant-numeric:tabular-nums}
+button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 24px;border-top:1px solid var(--line);background:var(--card)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.dots button{width:12px;height:12px;border-radius:50%;border:0;padding:0;background:var(--line);cursor:pointer}
+.dots button.ex{background:transparent;border:2px solid var(--line)}
+.dots button.on{background:var(--sun);border-color:var(--sun)}
+.navbtn{font:inherit;font-weight:700;padding:8px 16px;border-radius:10px;border:1.5px solid var(--sea);background:var(--card);color:var(--sea);cursor:pointer;white-space:nowrap}
+.navbtn.next{background:var(--sea);color:#fff}
+.navbtn:disabled{opacity:.35;cursor:default}
+.results{display:grid;gap:10px;margin-top:16px}
+.results .row{display:flex;justify-content:space-between;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.results .row span:last-child{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.total{font-family:var(--display);font-size:44px;font-weight:800;color:var(--sun)}
+ul.clean{margin:8px 0;padding-left:20px}
+ul.clean li{margin:6px 0}
+@media (max-width:700px){
+  body{font-size:17px}
+  .ladder{grid-template-columns:1fr}
+  .ladder .arr,.ladder .h:nth-child(2){display:none}
+  .flow .qq{grid-template-columns:1fr}
+  .flow .arr{display:none}
+  .opts,.fb{margin-left:0}
+  header{padding:10px 16px} nav{padding:10px 16px} .slide{padding:20px 16px 32px}
+  .dots{display:none}
+}
+@media (prefers-reduced-motion:reduce){.progress i{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><b>Unit 4</b> · Explore the World · Grammar Review</div>
+  <div class="topinfo" id="counter"></div>
+</header>
+<div class="progress"><i id="prog"></i></div>
+
+<main id="main">
+
+<!-- START -->
+<section class="slide" data-title="Start">
+  <div class="kicker">Grammar Builder · pages 101–104</div>
+  <h1>Explore the World: Grammar Review</h1>
+  <span class="ua big">Повторення граматики розділу 4: пояснення + тренувальні вправи з перевіркою</span>
+  <p class="lead">Read the explanation, then do the practice. Every answer is checked at once, and you see why it is right or wrong.</p>
+  <span class="ua">Прочитай пояснення, потім виконуй вправи. Кожна відповідь перевіряється одразу, і ти бачиш, чому вона правильна чи неправильна.</span>
+  <div class="topics">
+    <button data-go="wish-idea"><strong>I wish</strong>wishes and regrets<span class="ua">бажання й жаль</span></button>
+    <button data-go="cond-types"><strong>Conditionals</strong>types 0, 1, 2, 3, mixed<span class="ua">умовні речення</span></button>
+    <button data-go="tenses"><strong>Tense forms</strong>present, past, future<span class="ua">граматичні часи</span></button>
+    <button data-go="preps"><strong>Prepositions</strong>word + preposition<span class="ua">прийменники</span></button>
+  </div>
+  <p class="task" style="margin-top:20px">Use the arrows below or the ← → keys on your keyboard.<span class="ua">Гортай стрілками внизу або клавішами ← → на клавіатурі.</span></p>
+</section>
+
+<!-- WISH 1 -->
+<section class="slide" id="wish-idea" data-title="I wish: what it means">
+  <div class="kicker">Topic 1 · I wish · step 1 of 6</div>
+  <h2>What does "I wish…" mean?</h2>
+  <span class="ua big">Що означає «I wish…»?</span>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card sea">
+      <h3>The meaning</h3>
+      <p>I am <b>not happy</b> with the situation. I want it to be <b>different</b>, but I can't change it.</p>
+      <span class="ua big">Мені <b>не подобається</b>, як є насправді. Я хотів би, щоб було <b>інакше</b>, але змінити це не можу.</span>
+    </div>
+    <div class="card sun">
+      <h3>How to translate</h3>
+      <p><b>1) «Шкода, що…»</b> + say the real situation<br><b>2) «Хотів би я… / Як би я хотів…»</b> + say the wish</p>
+      <span class="ua big">Два способи: «Шкода, що…» (кажемо, як є насправді) або «Хотів би я…» (кажемо, чого хочемо).</span>
+    </div>
+  </div>
+
+  <div class="note">
+    <div style="font-size:22px;font-weight:700;color:var(--ink)">I wish I <em class="k">had</em> a dog.</div>
+    <span class="ua big">= Шкода, що в мене <b>немає</b> собаки. = Як би я хотів мати собаку.</span>
+    <p style="margin-bottom:0">Look: in English the verb is <b>positive and in the past</b> (<em class="k">had</em>). In Ukrainian «Шкода, що…» it is <b>negative and in the present</b> (<b>немає</b>). This is why the topic looks strange at first.</p>
+    <span class="ua">Зверни увагу: англійською дієслово <b>стверджувальне і в минулому часі</b> (had), а в українському «Шкода, що…» — <b>заперечне і в теперішньому</b> (немає). Саме тому тема спочатку здається дивною.</span>
+  </div>
+
+  <h3 style="margin-top:22px">There are 3 kinds of wishes</h3>
+  <span class="ua">Є 3 види «бажань»</span>
+  <div class="tablewrap">
+    <table>
+      <tr><th>What I feel</th><th>Form</th><th>Example</th><th>Українською</th></tr>
+      <tr><td>I'm unhappy about <b>NOW</b><span class="ua">незадоволений тим, що зараз</span></td><td>wish + <b>Past Simple</b></td><td>I wish I <em>had</em> more free time.</td><td class="tr">Шкода, що в мене мало вільного часу.</td></tr>
+      <tr><td>I'm sorry about the <b>PAST</b><span class="ua">шкодую про минуле</span></td><td>wish + <b>had + V3</b></td><td>I wish I <em>had studied</em> more.</td><td class="tr">Шкода, що я мало вчився.</td></tr>
+      <tr><td>Someone <b>annoys</b> me<span class="ua">мене хтось дратує, хочу, щоб змінився</span></td><td>wish + <b>would + V1</b></td><td>I wish you <em>would stop</em> shouting!</td><td class="tr">Та перестань уже кричати!</td></tr>
+    </table>
+  </div>
+  <p class="task">Next slides: each kind step by step.<span class="ua">На наступних слайдах кожен вид пояснено детально.</span></p>
+</section>
+
+<!-- WISH 2 -->
+<section class="slide" data-title="I wish: one step back">
+  <div class="kicker">Topic 1 · I wish · step 2 of 6</div>
+  <h2>The main trick: one step back</h2>
+  <span class="ua big">Головний секрет: дієслово робить «крок назад» у минуле</span>
+  <p class="lead">After <b>I wish</b>, the verb goes <b>one step back</b> in time. The past form here does not mean "past". It means "<b>not real</b>".</p>
+  <span class="ua big">Після I wish дієслово відступає на <b>один крок назад</b>. Минула форма тут не означає «минуле». Вона означає «<b>нереально</b>». Це як українська частка «<b>би</b>»: «хотів <b>би</b>», «якби».</span>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card sea">
+      <h3>Wish about NOW</h3>
+      <span class="ua">Бажання про зараз</span>
+      <div class="ladder">
+        <div class="h">Reality</div><div class="h"></div><div class="h">After I wish</div>
+        <div class="a">am / is / are</div><div class="arr">→</div><div class="b">were</div>
+        <div class="a">have / has</div><div class="arr">→</div><div class="b">had</div>
+        <div class="a">know, live, speak</div><div class="arr">→</div><div class="b">knew, lived, spoke</div>
+        <div class="a">don't / doesn't</div><div class="arr">→</div><div class="b">didn't</div>
+        <div class="a">can / can't</div><div class="arr">→</div><div class="b">could / couldn't</div>
+        <div class="a">am doing</div><div class="arr">→</div><div class="b">were doing</div>
+      </div>
+    </div>
+    <div class="card sun">
+      <h3>Regret about the PAST</h3>
+      <span class="ua">Жаль про минуле</span>
+      <div class="ladder">
+        <div class="h">Reality</div><div class="h"></div><div class="h">After I wish</div>
+        <div class="a">went, saw, did</div><div class="arr">→</div><div class="b">had gone, had seen, had done</div>
+        <div class="a">didn't go</div><div class="arr">→</div><div class="b">had gone</div>
+        <div class="a">couldn't go</div><div class="arr">→</div><div class="b">could have gone</div>
+      </div>
+      <p style="margin-top:14px"><b>were</b> is used with all persons: I were, he were, she were, it were.</p>
+      <span class="ua">Після wish кажемо <b>were</b> з усіма особами: I were, he were, she were.</span>
+    </div>
+  </div>
+  <div class="note sea">
+    <b>And one more rule: say the opposite.</b> Reality is "yes" → wish is "no". Reality is "no" → wish is "yes".
+    <span class="ua big">І ще одне правило: <b>кажемо протилежне</b>. Реальність «так» → бажання «ні». Реальність «ні» → бажання «так».</span>
+  </div>
+</section>
+
+<!-- WISH 3 -->
+<section class="slide" data-title="I wish: recipe">
+  <div class="kicker">Topic 1 · I wish · step 3 of 6</div>
+  <h2>Recipe: how to make a wish sentence</h2>
+  <span class="ua big">Рецепт: як скласти речення з I wish за 4 кроки</span>
+  <div class="grid g2" style="margin-top:12px">
+    <div>
+      <h3>Example 1 · about NOW</h3>
+      <div class="steps">
+        <div class="step"><div>Write the reality.<span class="ua">Запиши, як є насправді.</span><div class="res">I don't have a dog.</div></div></div>
+        <div class="step"><div>Now or past? → <b>NOW</b>.<span class="ua">Зараз чи в минулому? → Зараз.</span></div></div>
+        <div class="step"><div>Make the opposite: don't have → have.<span class="ua">Зроби протилежне: «не маю» → «маю».</span></div></div>
+        <div class="step"><div>One step back: have → had.<span class="ua">Крок назад: have → had.</span><div class="res">I wish I had a dog.</div><span class="ua">Шкода, що в мене немає собаки.</span></div></div>
+      </div>
+    </div>
+    <div>
+      <h3>Example 2 · about the PAST</h3>
+      <div class="steps">
+        <div class="step"><div>Write the reality.<span class="ua">Запиши, як було насправді.</span><div class="res">I didn't take an umbrella yesterday.</div></div></div>
+        <div class="step"><div>Now or past? → <b>PAST</b> (yesterday).<span class="ua">Зараз чи в минулому? → Минуле (yesterday).</span></div></div>
+        <div class="step"><div>Make the opposite: didn't take → took.<span class="ua">Протилежне: «не взяв» → «взяв».</span></div></div>
+        <div class="step"><div>One step back: took → had taken.<span class="ua">Крок назад: took → had taken.</span><div class="res">I wish I had taken an umbrella.</div><span class="ua">Шкода, що я не взяв парасольку.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WISH 4 -->
+<section class="slide" data-title="I wish: now">
+  <div class="kicker">Topic 1 · I wish · step 4 of 6</div>
+  <h2>Kind 1: unhappy about NOW</h2>
+  <span class="ua big">Вид 1: мені не подобається те, що відбувається зараз</span>
+  <div class="formula">I wish + I / you / he… + Past Simple (V2) / were / could + V1</div>
+  <div class="tablewrap">
+    <table>
+      <tr><th>Reality (now)</th><th>Wish</th><th>Українською</th></tr>
+      <tr><td class="real">I don't have enough money.</td><td class="wish">I wish I <em>had</em> enough money.</td><td class="tr">Шкода, що мені не вистачає грошей.</td></tr>
+      <tr><td class="real">I can't travel this summer.</td><td class="wish">I wish I <em>could travel</em> this summer.</td><td class="tr">Шкода, що я не можу подорожувати цього літа.</td></tr>
+      <tr><td class="real">I'm not in Spain.</td><td class="wish">I wish I <em>were</em> in Spain.</td><td class="tr">Хотів би я зараз бути в Іспанії.</td></tr>
+      <tr><td class="real">I don't remember where I saw the poster.</td><td class="wish">I wish I <em>knew</em> where I saw it.</td><td class="tr">Шкода, що я не пам'ятаю, де його бачив.</td></tr>
+      <tr><td class="real">I live far from the sea.</td><td class="wish">I wish I <em>didn't live</em> so far from the sea.</td><td class="tr">Шкода, що я живу так далеко від моря.</td></tr>
+      <tr><td class="real">I have to take classes this summer.</td><td class="wish">I wish I <em>didn't have</em> to take classes.</td><td class="tr">Шкода, що мені доводиться вчитися влітку.</td></tr>
+      <tr><td class="real">I'm not taking many classes.</td><td class="wish">I wish I <em>were taking</em> a heavier load.</td><td class="tr">Шкода, що я не взяв більше предметів.</td></tr>
+      <tr><td class="real">My sister is ill.</td><td class="wish">I wish my sister <em>weren't</em> ill.</td><td class="tr">Шкода, що сестра хворіє.</td></tr>
+      <tr><td class="real">You can't come with me.</td><td class="wish">Don't you wish you <em>were</em> able to come?</td><td class="tr">Тобі не шкода, що ти не можеш поїхати зі мною?</td></tr>
+    </table>
+  </div>
+  <p class="task">Look at each row: <b>yes ↔ no</b> are swapped and the verb moved <b>one step back</b>.<span class="ua">Подивись на кожен рядок: «так» і «ні» помінялися місцями, а дієслово зробило крок назад.</span></p>
+</section>
+
+<!-- WISH 5 -->
+<section class="slide" data-title="I wish: past">
+  <div class="kicker">Topic 1 · I wish · step 5 of 6</div>
+  <h2>Kind 2: sorry about the PAST</h2>
+  <span class="ua big">Вид 2: я шкодую про те, що вже сталося (або не сталося). Змінити це вже неможливо.</span>
+  <div class="formula">I wish + I / you / he… + had + V3</div>
+  <div class="formula alt">I wish + I / you / he… + could have + V3</div>
+  <span class="ua">had + третя форма дієслова. could have + V3 = «шкода, що <b>не зміг</b>».</span>
+  <div class="tablewrap">
+    <table>
+      <tr><th>Reality (past)</th><th>Regret</th><th>Українською</th></tr>
+      <tr><td class="real">I waited too long to start college.</td><td class="wish">I wish I <em>hadn't waited</em> so long.</td><td class="tr">Шкода, що я так довго чекав.</td></tr>
+      <tr><td class="real">I didn't know about this program.</td><td class="wish">I wish I <em>had known</em> about it earlier.</td><td class="tr">Шкода, що я не знав про цю програму раніше.</td></tr>
+      <tr><td class="real">I couldn't get credit for my trip.</td><td class="wish">I wish I <em>could have got</em> credit for it.</td><td class="tr">Шкода, що я не зміг отримати за це бали.</td></tr>
+      <tr><td class="real">I ate too much cake at the party.</td><td class="wish">I wish I <em>hadn't eaten</em> so much cake.</td><td class="tr">Шкода, що я з'їв стільки торта.</td></tr>
+      <tr><td class="real">I didn't take my camera.</td><td class="wish">I wish I <em>had taken</em> my camera.</td><td class="tr">Шкода, що я не взяв фотоапарат.</td></tr>
+      <tr><td class="real">I missed the last train.</td><td class="wish">I wish I <em>hadn't missed</em> the last train.</td><td class="tr">Шкода, що я спізнився на останній потяг.</td></tr>
+    </table>
+  </div>
+  <h3 style="margin-top:20px">Now or past? Compare</h3>
+  <span class="ua">Зараз чи в минулому? Порівняй</span>
+  <div class="tablewrap">
+    <table>
+      <tr><th>About NOW</th><th>About the PAST</th></tr>
+      <tr><td>I wish I <em>knew</em> her number.<span class="ua">Шкода, що я не знаю її номера (зараз).</span></td><td>I wish I <em>had known</em> her number yesterday.<span class="ua">Шкода, що я не знав її номера (учора).</span></td></tr>
+      <tr><td>I wish I <em>could</em> spend a year abroad.<span class="ua">Хотів би я провести рік за кордоном.</span></td><td>I wish I <em>could have</em> spent a year abroad.<span class="ua">Шкода, що мені не вдалося провести рік за кордоном.</span></td></tr>
+      <tr><td>I wish I <em>were</em> at the beach.<span class="ua">Хотів би я зараз бути на пляжі.</span></td><td>I wish I <em>had been</em> at the beach last week.<span class="ua">Шкода, що я не був на пляжі минулого тижня.</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- WISH 6 -->
+<section class="slide" data-title="I wish: would">
+  <div class="kicker">Topic 1 · I wish · step 6 of 6</div>
+  <h2>Kind 3: a complaint (wish + would)</h2>
+  <span class="ua big">Вид 3: скарга. Хтось інший (або погода, автобус, телефон) робить щось, що мене дратує, і я хочу, щоб це змінилося.</span>
+  <div class="formula">I wish + another person / thing + would + V1</div>
+  <span class="ua">Українською: «Хоч би…!», «Ну коли вже…!», «Ну перестань…!»</span>
+  <div class="tablewrap">
+    <table>
+      <tr><th>What annoys me</th><th>Complaint</th><th>Українською</th></tr>
+      <tr><td class="real">My brother plays loud music every night.</td><td class="wish">I wish my brother <em>would turn</em> the music down!</td><td class="tr">Хоч би брат зробив музику тихіше!</td></tr>
+      <tr><td class="real">It has been raining all week.</td><td class="wish">I wish it <em>would stop</em> raining!</td><td class="tr">Ну коли вже перестане дощ!</td></tr>
+      <tr><td class="real">You never listen to me.</td><td class="wish">I wish you <em>would listen</em> to me!</td><td class="tr">Ну послухай же ти мене!</td></tr>
+      <tr><td class="real">The bus is late again.</td><td class="wish">I wish the bus <em>would come</em>!</td><td class="tr">Ну коли вже приїде той автобус!</td></tr>
+      <tr><td class="real">My friend doesn't answer my messages.</td><td class="wish">I wish she <em>would answer</em> my messages.</td><td class="tr">Хоч би вона відповіла на мої повідомлення.</td></tr>
+    </table>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card sun">
+      <h3>Not about yourself</h3>
+      <p><span class="wrong">I wish I would speak French.</span><br><span class="right">I wish I could speak French.</span></p>
+      <span class="ua">Про себе would не кажемо. Скаржимось лише на когось іншого. Про себе — could.</span>
+    </div>
+    <div class="card sun">
+      <h3>Not with "state" verbs</h3>
+      <p><span class="wrong">I wish I would have a car.</span><br><span class="right">I wish I had a car.</span></p>
+      <span class="ua">З дієсловами стану (have, know, be) would не вживаємо. Це вже вид 1.</span>
+    </div>
+  </div>
+</section>
+
+<!-- WISH 7 -->
+<section class="slide" data-title="I wish: how to choose">
+  <div class="kicker">Topic 1 · I wish · summary</div>
+  <h2>How to choose the right form</h2>
+  <span class="ua big">Як обрати правильну форму: задай собі 3 питання по черзі</span>
+  <div class="flow">
+    <div class="qq"><div><b>1. Is another person or thing annoying me, and I want it to change?</b><span class="ua">Мене дратує хтось інший, і я хочу, щоб він змінився?</span></div><div class="arr">→ yes</div><div class="ans">would + V1<span class="ua">I wish you would stop!</span></div></div>
+    <div class="qq"><div><b>2. Is it about the past? (yesterday, last year, already happened)</b><span class="ua">Це про минуле? (вчора, минулого року, вже сталося)</span></div><div class="arr">→ yes</div><div class="ans">had + V3 / could have + V3<span class="ua">I wish I had known.</span></div></div>
+    <div class="qq"><div><b>3. Is it about now?</b><span class="ua">Це про зараз?</span></div><div class="arr">→ yes</div><div class="ans">V2 / were / could + V1<span class="ua">I wish I knew. I wish I could.</span></div></div>
+  </div>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card sea">
+      <h3>If only…</h3>
+      <p>Same grammar as <b>I wish</b>, but more emotional.</p>
+      <span class="ua">Та сама граматика, але емоційніше: «Якби ж то…!»</span>
+      <div class="ex">If only I <em>had</em> more time!<span class="ua">Якби ж то в мене було більше часу!</span></div>
+      <div class="ex">If only I <em>hadn't missed</em> the train!<span class="ua">Якби ж то я не спізнився на потяг!</span></div>
+    </div>
+    <div class="card sea">
+      <h3>wish or hope?</h3>
+      <div class="ex"><b>hope</b> = real, possible<br>I hope you <em>pass</em> the exam.<span class="ua">Сподіваюся, ти складеш іспит. (це можливо → звичайний час)</span></div>
+      <div class="ex"><b>wish</b> = not real<br>I wish I <em>could</em> help you.<span class="ua">Шкода, що я не можу тобі допомогти. (нереально → крок назад)</span></div>
+    </div>
+    <div class="card sea">
+      <h3>wish = бажаю</h3>
+      <p>wish + <b>person</b> + <b>thing</b> = a good wish. No step back here.</p>
+      <span class="ua">wish + людина + що саме = звичайне побажання, «бажаю». Тут немає кроку назад.</span>
+      <div class="ex">I wish you good luck!<span class="ua">Бажаю тобі удачі!</span></div>
+      <div class="ex">We wish you a happy birthday!<span class="ua">Бажаємо тобі щасливого дня народження!</span></div>
+    </div>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <tr><th>Mistake</th><th>Correct</th><th>Why</th></tr>
+      <tr><td class="wrong">I wish I have more free time.</td><td class="right">I wish I had more free time.</td><td>About now → one step back: have → had<span class="ua">Після wish не буває теперішнього часу.</span></td></tr>
+      <tr><td class="wrong">I wish I knew it yesterday.</td><td class="right">I wish I had known it yesterday.</td><td>yesterday = past → had + V3<span class="ua">Про минуле → had + V3.</span></td></tr>
+      <tr><td class="wrong">I wish I can swim.</td><td class="right">I wish I could swim.</td><td>can → could<span class="ua">can після wish завжди стає could.</span></td></tr>
+      <tr><td class="wrong">I wish I would be taller.</td><td class="right">I wish I were taller.</td><td>about yourself → no would<span class="ua">Про себе would не вживаємо.</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- PRACTICE 1 -->
+<section class="slide" data-title="Practice 1: I wish" data-ex="wishA">
+  <div class="kicker">Practice 1 · I wish</div>
+  <h2>Choose the correct form</h2>
+  <span class="ua big">Обери правильну форму. Відповідь перевіряється одразу, і ти бачиш пояснення.</span>
+  <div class="items" data-ex-host="wishA"></div>
+  <div class="bar"><span class="score" data-score="wishA"></span><button class="btn ghost" data-reset="wishA">Try again</button></div>
+</section>
+
+<!-- PRACTICE 2 -->
+<section class="slide" data-title="Practice 2: I wish" data-ex="wishB">
+  <div class="kicker">Practice 2 · I wish</div>
+  <h2>Reality → wish. Write the missing words</h2>
+  <span class="ua big">Прочитай, як є насправді, і впиши бажання. Натисни Enter або «Check», щоб перевірити.</span>
+  <div class="items" data-ex-host="wishB"></div>
+  <div class="bar"><span class="score" data-score="wishB"></span><button class="btn ghost" data-reset="wishB">Try again</button></div>
+</section>
+
+<!-- COND 1 -->
+<section class="slide" id="cond-types" data-title="Conditionals: 4 types">
+  <div class="kicker">Topic 2 · Conditionals · 1 of 3</div>
+  <h2>Conditional sentences: 4 main types</h2>
+  <span class="ua big">Умовні речення: 4 основні типи</span>
+  <div class="note sea" style="margin-top:12px">
+    <b>Quick tip:</b> if the Ukrainian sentence has <b>«якщо»</b>, it is usually type 0 or 1 (real). If it has <b>«якби… би»</b>, it is type 2 or 3 (not real).
+    <span class="ua big">Підказка: «якщо» → тип 0 або 1 (реальне). «якби… би» → тип 2 або 3 (нереальне).</span>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card sea"><span class="tag">Type 0 · always true</span>
+      <div class="formula">If + Present Simple, Present Simple</div>
+      <span class="ua">Загальна істина, так буває завжди.</span>
+      <div class="ex">If you <em>heat</em> ice, it <em>melts</em>.<span class="ua">Якщо нагріти лід, він тане.</span></div></div>
+    <div class="card sea"><span class="tag">Type 1 · real future</span>
+      <div class="formula">If + Present Simple, will + V1</div>
+      <span class="ua">Реальна ситуація, може статися.</span>
+      <div class="ex">If it <em>rains</em> tomorrow, we <em>will stay</em> at home.<span class="ua">Якщо завтра буде дощ, ми залишимося вдома.</span></div></div>
+    <div class="card sun"><span class="tag">Type 2 · not real now</span>
+      <div class="formula alt">If + Past Simple, would + V1</div>
+      <span class="ua">Нереально зараз, лише уявляємо.</span>
+      <div class="ex">If I <em>had</em> money, I <em>would travel</em>.<span class="ua">Якби в мене були гроші, я б подорожував.</span></div></div>
+    <div class="card sun"><span class="tag">Type 3 · not real past</span>
+      <div class="formula alt">If + had + V3, would have + V3</div>
+      <span class="ua">Про минуле, яке вже не змінити.</span>
+      <div class="ex">If I <em>had known</em>, I <em>would have met</em> you at the airport.<span class="ua">Якби я знав, я б зустрів тебе в аеропорту.</span></div></div>
+  </div>
+</section>
+
+<!-- COND 2 -->
+<section class="slide" data-title="Conditionals: mixed">
+  <div class="kicker">Topic 2 · Conditionals · 2 of 3</div>
+  <h2>Mixed conditionals</h2>
+  <span class="ua big">Змішані умовні речення: дві частини речення про <b>різний час</b></span>
+  <p class="lead">In a mixed conditional, one part is about the <b>past</b> and the other part is about <b>now</b>. So we take one half from type 3 and one half from type 2.</p>
+  <span class="ua big">У змішаному реченні одна частина про <b>минуле</b>, а інша про <b>зараз</b>. Тому одну половину беремо з 3-го типу, а другу з 2-го.</span>
+
+  <div class="card sea" style="margin-top:16px">
+    <span class="tag">Mixed A · past cause → result NOW</span>
+    <span class="ua">Причина в минулому → наслідок зараз</span>
+    <div class="steps">
+      <div class="step"><div><b>Past:</b> Yesterday I went to bed at 3 a.m.<span class="ua">Минуле: учора я ліг спати о 3 ночі.</span></div></div>
+      <div class="step"><div><b>Now:</b> Today I am very tired.<span class="ua">Зараз: сьогодні я дуже втомлений.</span></div></div>
+      <div class="step"><div>Join them:<div class="res">If I <em class="k">had gone</em> to bed earlier, I <em class="k">wouldn't be</em> tired now.</div><span class="ua">Якби я вчора ліг раніше, я б зараз не був втомлений.</span></div></div>
+    </div>
+    <div class="formula">If + had + V3 (past), would + V1 (now)</div>
+    <div class="ex">If I <em>had taken</em> that job in London, I <em>would live</em> there now.<span class="ua">Якби я тоді погодився на ту роботу в Лондоні, я б зараз жив там.</span></div>
+    <div class="ex">If she <em>had studied</em> medicine, she <em>would be</em> a doctor now.<span class="ua">Якби вона вивчала медицину, вона б зараз була лікаркою.</span></div>
+    <p style="margin-bottom:0">Signal words for the "now" part: <b>now, today, still</b>.</p>
+    <span class="ua">Слова-підказки для частини «зараз»: now, today, still.</span>
+  </div>
+
+  <div class="card sun" style="margin-top:16px">
+    <span class="tag">Mixed B · always / now → result in the PAST</span>
+    <span class="ua">Щось є завжди (або зараз) → через це в минулому сталося інакше</span>
+    <div class="steps">
+      <div class="step"><div><b>Always:</b> I'm not a good swimmer.<span class="ua">Завжди: я погано плаваю.</span></div></div>
+      <div class="step"><div><b>Past:</b> Yesterday I didn't swim to the island.<span class="ua">Минуле: учора я не доплив до острова.</span></div></div>
+      <div class="step"><div>Join them:<div class="res">If I <em class="k">were</em> a better swimmer, I <em class="k">would have swum</em> to the island.</div><span class="ua">Якби я краще плавав, я б доплив до острова.</span></div></div>
+    </div>
+    <div class="formula alt">If + Past Simple (always / now), would have + V3 (past)</div>
+    <div class="ex">If it <em>wasn't</em> for the rain, we <em>would have been</em> home by now. <span class="tag" style="margin:0 0 0 6px">p.102</span><span class="ua">Якби не дощ, ми б уже були вдома. (дощ іде й досі → тому ми досі не вдома)</span></div>
+  </div>
+</section>
+
+<!-- COND 3 -->
+<section class="slide" data-title="Conditionals: special forms">
+  <div class="kicker">Topic 2 · Conditionals · 3 of 3</div>
+  <h2>Special forms and traps</h2>
+  <span class="ua big">Особливі форми та пастки. Кожна з них є у вправі 2 на с.102.</span>
+  <div class="tablewrap">
+    <table>
+      <tr><th>Form</th><th>Що означає</th><th>Example</th><th>Українською</th></tr>
+      <tr><td><b>no will after if</b></td><td class="tr">Після if не ставимо will, хоча українською кажемо «буде».</td><td><span class="wrong">If it will rain…</span><br>If it <em>rains</em> tomorrow, we'll stay home.</td><td class="tr">Якщо завтра буде дощ, ми залишимося вдома.</td></tr>
+      <tr><td><b>If you should (happen to)</b> + V1</td><td class="tr">«Якщо раптом…». Ввічливо, часто далі прохання.</td><td>If you <em>should happen to</em> change your mind, drop me a line.</td><td class="tr">Якщо раптом передумаєш, напиши мені.</td></tr>
+      <tr><td><b>If it weren't / wasn't for</b> + noun</td><td class="tr">«Якби не…» (про зараз)</td><td>If it <em>weren't for</em> my mum, I would forget everything.</td><td class="tr">Якби не мама, я б усе забував.</td></tr>
+      <tr><td><b>If it hadn't been for</b> + noun</td><td class="tr">«Якби не…» (про минуле)</td><td>If it <em>hadn't been for</em> the map, we would have got lost.</td><td class="tr">Якби не карта, ми б заблукали.</td></tr>
+      <tr><td><b>But for</b> + noun</td><td class="tr">Те саме «якби не…», тільки коротше. Після нього лише іменник, без дієслова.</td><td><span class="wrong">But for you helped us…</span><br><em>But for</em> your help, we would have taken longer.</td><td class="tr">Якби не твоя допомога, у нас пішло б більше часу.</td></tr>
+      <tr><td><b>Unless</b> = if not</td><td class="tr">«Якщо не…». Після unless дієслово стверджувальне.</td><td><em>Unless</em> you hurry, you'll miss the train.</td><td class="tr">Якщо не поквапишся, спізнишся на потяг.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- PRACTICE 3 -->
+<section class="slide" data-title="Practice 3: correct or not" data-ex="condA">
+  <div class="kicker">Practice 3 · Conditionals</div>
+  <h2>Correct or incorrect?</h2>
+  <span class="ua big">Визнач, чи речення граматично правильне. Відповідь перевіряється одразу.</span>
+  <div class="items" data-ex-host="condA"></div>
+  <div class="bar"><span class="score" data-score="condA"></span><button class="btn ghost" data-reset="condA">Try again</button></div>
+</section>
+
+<!-- PRACTICE 4 -->
+<section class="slide" data-title="Practice 4: conditionals" data-ex="condB">
+  <div class="kicker">Practice 4 · Conditionals</div>
+  <h2>Choose the correct form</h2>
+  <span class="ua big">Обери правильну форму дієслова.</span>
+  <div class="items" data-ex-host="condB"></div>
+  <div class="bar"><span class="score" data-score="condB"></span><button class="btn ghost" data-reset="condB">Try again</button></div>
+</section>
+
+<!-- TENSES -->
+<section class="slide" id="tenses" data-title="Tense forms">
+  <div class="kicker">Topic 3 · Tense forms</div>
+  <h2>Review of tense forms</h2>
+  <span class="ua big">Повторення граматичних часів (як у листівках Маріо на с.102–103)</span>
+  <div class="tablewrap">
+    <table>
+      <tr><th>Tense</th><th>When</th><th>Example</th><th>Signal words</th></tr>
+      <tr><td><b>Present Simple</b></td><td>facts, habits, timetables<span class="ua">факти, звички, розклад</span></td><td>My flight <em>departs</em> at 4.30 p.m.<span class="ua">Мій рейс відлітає о 16:30.</span></td><td>every day, usually, timetable</td></tr>
+      <tr><td><b>Present Continuous</b></td><td>now; fixed plans<span class="ua">зараз; домовленості на майбутнє</span></td><td>I'<em>m sitting</em> in a café.<span class="ua">Я сиджу в кав'ярні.</span>I'<em>m staying</em> in Paris next week.<span class="ua">Наступного тижня я буду в Парижі.</span></td><td>now, at the moment, tonight</td></tr>
+      <tr><td><b>Past Simple</b></td><td>finished past actions<span class="ua">завершені дії в минулому</span></td><td>I <em>went</em> to Paris last year.<span class="ua">Минулого року я їздив до Парижа.</span></td><td>yesterday, last year, ago</td></tr>
+      <tr><td><b>Past Continuous</b></td><td>action in progress in the past<span class="ua">дія тривала в якийсь момент минулого</span></td><td>All the passengers <em>were speaking</em> Dutch.<span class="ua">Усі пасажири розмовляли нідерландською.</span></td><td>while, at 5 p.m. yesterday</td></tr>
+      <tr><td><b>Present Perfect</b></td><td>past → now; result<span class="ua">зв'язок минулого із зараз</span></td><td>I'<em>ve been</em> here for a week.<span class="ua">Я тут уже тиждень.</span>How time <em>has flown</em>!<span class="ua">Як швидко пролетів час!</span></td><td>for, since, just, already, always, ever</td></tr>
+      <tr><td><b>Past Perfect</b></td><td>before another past action<span class="ua">дія, що сталася раніше за іншу минулу</span></td><td>The train <em>had left</em> when I arrived.<span class="ua">Потяг уже поїхав, коли я прийшов.</span></td><td>before, after, by the time, already</td></tr>
+      <tr><td><b>Future Simple</b></td><td>predictions, quick decisions<span class="ua">прогнози, рішення в момент мовлення</span></td><td>The trip <em>will take</em> 12 hours.<span class="ua">Подорож триватиме 12 годин.</span></td><td>I think, probably, tomorrow</td></tr>
+    </table>
+  </div>
+  <div class="note"><b>Stative verbs</b> (know, understand, want, like, be) are usually <b>not</b> used in Continuous: <span class="wrong">I'm not understanding</span> → <span class="right">I don't understand</span>.<span class="ua">Дієслова стану (know, understand, want, like, be) зазвичай не мають -ing: кажемо I don't understand, а не I'm not understanding.</span></div>
+</section>
+
+<!-- PRACTICE 5 -->
+<section class="slide" data-title="Practice 5: tenses" data-ex="tense">
+  <div class="kicker">Practice 5 · Tense forms</div>
+  <h2>A postcard from Lisbon</h2>
+  <span class="ua big">Постав дієслово в правильний час. Натисни Enter або «Check». Скорочення (I'm, don't) теж зараховуються.</span>
+  <div class="items" data-ex-host="tense"></div>
+  <div class="bar"><span class="score" data-score="tense"></span><button class="btn ghost" data-reset="tense">Try again</button></div>
+</section>
+
+<!-- PREPOSITIONS -->
+<section class="slide" id="preps" data-title="Prepositions">
+  <div class="kicker">Topic 4 · Prepositions</div>
+  <h2>Words that go with prepositions</h2>
+  <span class="ua big">Слова, які завжди вживаються з певним прийменником. Вчи їх парою, як одне ціле.</span>
+  <div class="tablewrap">
+    <table>
+      <tr><th>Phrase</th><th>Українською</th><th>Example</th></tr>
+      <tr class="grp"><td colspan="3">From p.104</td></tr>
+      <tr><td>lounge <em>around / about</em></td><td class="tr">байдикувати, валятися</td><td>We lounged around on the beach.</td></tr>
+      <tr><td>stay <em>in</em> a hotel</td><td class="tr">зупинитися в готелі</td><td>We stayed in a small hotel.</td></tr>
+      <tr><td>different <em>from</em></td><td class="tr">відрізнятися від</td><td>Lviv is different from Kyiv.</td></tr>
+      <tr><td>known <em>for</em></td><td class="tr">відомий чимось</td><td>Lviv is known for its coffee.</td></tr>
+      <tr><td>range <em>from</em> … <em>to</em> …</td><td class="tr">коливатися від … до …</td><td>Prices range from 10 to 50 euros.</td></tr>
+      <tr><td>be drawn <em>to</em></td><td class="tr">тягнутися до чогось, захоплюватися</td><td>I'm drawn to old castles.</td></tr>
+      <tr><td>the chance <em>to</em> + V1</td><td class="tr">нагода щось зробити</td><td>You'll have the chance to see bears.</td></tr>
+      <tr><td>a taste <em>of</em></td><td class="tr">відчути смак чогось, спробувати</td><td>a taste of village life</td></tr>
+      <tr><td>surrounded <em>by</em></td><td class="tr">оточений чимось</td><td>The hut is surrounded by trees.</td></tr>
+      <tr><td>book <em>in</em> advance</td><td class="tr">бронювати заздалегідь</td><td>Book your tickets in advance.</td></tr>
+      <tr class="grp"><td colspan="3">Travel</td></tr>
+      <tr><td>arrive <em>in</em> + city / country</td><td class="tr">прибути до міста / країни</td><td>We arrived in Paris.</td></tr>
+      <tr><td>arrive <em>at</em> + station / airport</td><td class="tr">прибути на вокзал / в аеропорт</td><td>We arrived at the airport.</td></tr>
+      <tr><td>go <em>on</em> holiday</td><td class="tr">поїхати у відпустку, на канікули</td><td>We go on holiday in July.</td></tr>
+      <tr><td>travel <em>by</em> train / plane</td><td class="tr">їхати потягом / летіти літаком</td><td>I travelled by train.</td></tr>
+      <tr><td><em>on</em> foot</td><td class="tr">пішки</td><td>We went there on foot.</td></tr>
+      <tr><td>get <em>on / off</em> a bus</td><td class="tr">сісти в автобус / вийти з автобуса</td><td>Get off the bus at the museum.</td></tr>
+      <tr class="grp"><td colspan="3">Useful</td></tr>
+      <tr><td>famous <em>for</em></td><td class="tr">славетний чимось</td><td>Paris is famous for the Eiffel Tower.</td></tr>
+      <tr><td>interested <em>in</em></td><td class="tr">цікавитися чимось</td><td>I'm interested in history.</td></tr>
+      <tr><td>depend <em>on</em></td><td class="tr">залежати від</td><td>It depends on the weather.</td></tr>
+      <tr><td>full <em>of</em></td><td class="tr">повний чогось</td><td>The city is full of tourists.</td></tr>
+      <tr><td>look forward <em>to</em> + -ing</td><td class="tr">з нетерпінням чекати (to тут прийменник, тому далі -ing)</td><td>I'm looking forward to seeing you.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- PRACTICE 6 -->
+<section class="slide" data-title="Practice 6: prepositions" data-ex="prep">
+  <div class="kicker">Practice 6 · Prepositions</div>
+  <h2>Fill in the correct preposition</h2>
+  <span class="ua big">Впиши один прийменник. Натисни Enter або «Check».</span>
+  <div class="items" data-ex-host="prep"></div>
+  <div class="bar"><span class="score" data-score="prep"></span><button class="btn ghost" data-reset="prep">Try again</button></div>
+</section>
+
+<!-- RECAP -->
+<section class="slide" data-title="Recap">
+  <div class="kicker">Recap</div>
+  <h2>Remember these four things</h2>
+  <span class="ua big">Найголовніше з усього уроку</span>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card sea"><h3>I wish</h3>Now → <b>V2 / were / could</b>. Past → <b>had + V3</b>. Complaint about others → <b>would</b>. Always say the <b>opposite</b> of reality.<span class="ua">Зараз → крок назад; минуле → had + V3; скарга на інших → would. Завжди кажемо протилежне до реальності.</span></div>
+    <div class="card sun"><h3>Conditionals</h3>«якщо» → type 0/1, «якби… би» → type 2/3. Mixed = past + now. No <b>will</b> after if. <b>But for</b> + noun.<span class="ua">Змішаний тип = одна частина про минуле, друга про зараз.</span></div>
+    <div class="card ink"><h3>Tenses</h3>Look for <b>signal words</b>: now, yesterday, for, since, already, tonight.<span class="ua">Шукай слова-підказки часу.</span></div>
+    <div class="card sea"><h3>Prepositions</h3>Learn them in pairs: <b>known for, different from, surrounded by, in advance</b>.<span class="ua">Вчи слово разом із прийменником.</span></div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="slide" data-title="Results">
+  <div class="kicker">Finish</div>
+  <h2>Your results</h2>
+  <span class="ua big">Твій результат за всі вправи</span>
+  <div class="total" id="total">0 / 0</div>
+  <div class="results" id="results"></div>
+  <div class="bar"><button class="btn ghost" id="resetAll">Start all exercises again</button></div>
+  <p class="task">Now open your textbook: p.101 ex.1, p.102 ex.2, p.102–103 ex.3, p.104 ex.4.<span class="ua">Тепер відкрий підручник і виконай вправи на с.101–104.</span></p>
+</section>
+
+</main>
+
+<nav>
+  <button class="navbtn" id="prev">← Back</button>
+  <div class="dots" id="dots"></div>
+  <button class="navbtn next" id="next">Next →</button>
+</nav>
+
+<script>
+const EX = {
+  wishA:{name:"Practice 1 · I wish (choose)", type:"choose", items:[
+    {q:"I wish I ___ a bigger suitcase. My things don't fit!", o:["have","had"], a:1,
+     e:"It is about NOW (my things don't fit now). After I wish the verb goes one step back: have → had.",
+     u:"Йдеться про зараз. Після I wish дієслово робить крок назад: have → had. «Шкода, що в мене немає більшої валізи». Теперішнього часу (have) після wish не буває."},
+    {q:"I wish we ___ go to Iceland next summer, but it's too expensive.", o:["can","could"], a:1,
+     e:"After I wish, can always changes to could.",
+     u:"Після I wish can завжди стає could. «Шкода, що ми не можемо поїхати до Ісландії»."},
+    {q:"My brother wishes he ___ so much fast food on holiday last year.", o:["didn't eat","hadn't eaten"], a:1,
+     e:"'last year' = the PAST. For regrets about the past we use had + V3. 'didn't eat' is the form for wishes about now.",
+     u:"last year — минуле. Жаль про минуле → had + V3. «Брат шкодує, що минулого року їв стільки фастфуду». didn't eat — це форма для «зараз»."},
+    {q:"I wish I ___ the name of that hotel. I can't remember it now.", o:["knew","had known"], a:0,
+     e:"'now' = present: know → knew. 'had known' would be about the past.",
+     u:"now — йдеться про зараз: know → knew. «Шкода, що я не пам'ятаю назви готелю». had known було б про минуле."},
+    {q:"She wishes she ___ the Rijksmuseum when she was in Amsterdam.", o:["visited","had visited"], a:1,
+     e:"'when she was in Amsterdam' = the past → had + V3.",
+     u:"«Коли вона була в Амстердамі» — минуле → had visited. «Вона шкодує, що не відвідала Рейксмузеум»."},
+    {q:"I wish it ___ raining! We want to go to the beach.", o:["would stop","stops"], a:0,
+     e:"The rain annoys us and we want it to change → would + V1. After I wish we never use the present form (stops).",
+     u:"Дощ нас дратує, хочемо, щоб він змінився → would + V1. «Ну коли вже перестане дощ!» Теперішній час (stops) після wish не вживаємо."},
+    {q:"Don't you wish you ___ on holiday right now?", o:["are","were"], a:1,
+     e:"'right now' = present: are → were (one step back).",
+     u:"right now — зараз: are → were. «Тобі не шкода, що ти зараз не у відпустці?»"},
+    {q:"I wish I ___ my camera at home yesterday.", o:["hadn't left","didn't leave"], a:0,
+     e:"'yesterday' = past → had not + V3.",
+     u:"yesterday — минуле → hadn't left. «Шкода, що я вчора залишив фотоапарат удома»."},
+    {q:"I ___ you have a great trip!", o:["hope","wish"], a:0,
+     e:"This is real and possible → hope + normal tense. 'I wish you have' is not correct.",
+     u:"Це реальне побажання, яке може здійснитися → hope. «Сподіваюся, у тебе буде чудова подорож!»"},
+    {q:"We wish we ___ caught the earlier train, but we were too late.", o:["could","could have"], a:1,
+     e:"Past ('we were too late') + 'we weren't able' → could have + V3.",
+     u:"Минуле + «не змогли» → could have + V3. «Шкода, що ми не встигли на раніший потяг»."},
+    {q:"I wish I ___ speak Spanish.", o:["would","could"], a:1,
+     e:"About yourself we don't use would. can → could.",
+     u:"Про себе would не кажемо. can → could. «Шкода, що я не розмовляю іспанською»."}
+  ]},
+  wishB:{name:"Practice 2 · I wish (write)", type:"type", items:[
+    {c:"Reality: I don't speak Dutch.", q:"I wish I ___ Dutch.", a:["spoke"],
+     e:"Now → one step back: speak → spoke. Opposite: don't speak → spoke.",
+     u:"Зараз → крок назад: speak → spoke, і протилежне: «не говорю» → «говорив би»."},
+    {c:"Reality: I can't swim.", q:"I wish I ___ swim.", a:["could"],
+     e:"can't → could (opposite + one step back).",
+     u:"can't → could: протилежне + крок назад."},
+    {c:"Reality: I didn't take any photos in Venice.", q:"I wish I ___ some photos in Venice.", a:["had taken"],
+     e:"Past → had + V3. Opposite: didn't take → had taken.",
+     u:"Минуле → had + V3: «не сфотографував» → had taken."},
+    {c:"Reality: We aren't on the beach.", q:"I wish we ___ on the beach.", a:["were"],
+     e:"are not → were (opposite + one step back).",
+     u:"aren't → were: протилежне + крок назад."},
+    {c:"Reality: I spent all my money on the first day.", q:"I wish I ___ all my money on the first day.", a:["hadn't spent","had not spent"],
+     e:"Past and positive → negative had + V3: hadn't spent.",
+     u:"Минуле, і було «так» → пишемо «ні»: hadn't spent."},
+    {c:"Reality: My friend always talks during films. It annoys me!", q:"I wish my friend ___ talking during films.", a:["would stop"],
+     e:"Another person annoys me → would + V1.",
+     u:"Мене дратує інша людина → would + V1: would stop."},
+    {c:"Reality: I missed my flight.", q:"I wish I ___ my flight.", a:["hadn't missed","had not missed"],
+     e:"Past → hadn't + V3.",
+     u:"Минуле → hadn't + V3: hadn't missed."},
+    {c:"Reality: I have to study this summer.", q:"I wish I ___ to study this summer.", a:["didn't have","did not have"],
+     e:"Now and positive → negative Past Simple: didn't have.",
+     u:"Зараз, і є «так» → пишемо «ні» в минулому часі: didn't have."}
+  ]},
+  condA:{name:"Practice 3 · Correct or incorrect", type:"choose", items:[
+    {q:"If you heat ice, it melts.", o:["Correct","Incorrect"], a:0,
+     e:"Type 0: a general truth, Present Simple in both parts.", u:"Тип 0: загальна істина, в обох частинах Present Simple. «Якщо нагріти лід, він тане»."},
+    {q:"If it will rain tomorrow, we'll stay in the hotel.", o:["Correct","Incorrect"], a:1,
+     e:"No will after if. Correct: If it rains tomorrow…", u:"Після if не ставимо will. Правильно: If it rains tomorrow, we'll stay…"},
+    {q:"If I were you, I would book the tickets in advance.", o:["Correct","Incorrect"], a:0,
+     e:"Type 2 used for advice: If I were you…", u:"Тип 2 для поради: «Я б на твоєму місці забронював квитки заздалегідь»."},
+    {q:"If we had left earlier, we wouldn't miss the train yesterday.", o:["Correct","Incorrect"], a:1,
+     e:"Both parts are about yesterday (past) → type 3: wouldn't have missed.", u:"Обидві частини про вчора → тип 3: wouldn't have missed."},
+    {q:"But for the map, we would have got lost.", o:["Correct","Incorrect"], a:0,
+     e:"But for + noun (the map) is correct.", u:"Після but for іменник (the map) — правильно. «Якби не карта, ми б заблукали»."},
+    {q:"If you should see Anna, tell her to call me.", o:["Correct","Incorrect"], a:0,
+     e:"If you should + V1 = if by chance.", u:"If you should… = «Якщо раптом побачиш Анну, скажи їй подзвонити»."},
+    {q:"If I had taken the job in London, I would live there now.", o:["Correct","Incorrect"], a:0,
+     e:"Mixed: past cause (had taken) + result now (would live … now).", u:"Змішаний тип: причина в минулому + наслідок зараз. «Якби я тоді погодився, я б зараз жив там»."},
+    {q:"If it wasn't for my sister helped me, I would have failed.", o:["Correct","Incorrect"], a:1,
+     e:"After 'for' we need a noun, not a verb: If it hadn't been for my sister's help…", u:"Після for потрібен іменник, а не дієслово: If it hadn't been for my sister('s help)…"},
+    {q:"Unless you don't hurry, you'll miss the bus.", o:["Correct","Incorrect"], a:1,
+     e:"Unless already means 'if not'. Correct: Unless you hurry…", u:"Unless вже означає «якщо не», друге заперечення зайве. Правильно: Unless you hurry…"}
+  ]},
+  condB:{name:"Practice 4 · Conditionals (choose)", type:"choose", items:[
+    {q:"If I ___ more time, I would visit all the museums in Lviv.", o:["have","had"], a:1,
+     e:"'would visit' → type 2 → if + Past Simple.", u:"Є would + V1 → тип 2 → if + минулий час. «Якби в мене було більше часу…»"},
+    {q:"If you ___ the guide, he will show you the way.", o:["ask","will ask"], a:0,
+     e:"Type 1: if + Present Simple. No will after if.", u:"Тип 1: після if теперішній час, без will."},
+    {q:"If they had booked a room, they ___ in the car.", o:["wouldn't sleep","wouldn't have slept"], a:1,
+     e:"'had booked' → type 3 → would have + V3.", u:"had booked → тип 3 → would have + V3. «Якби вони забронювали номер, не спали б у машині»."},
+    {q:"If I ___ a better swimmer, I would go diving.", o:["were","would be"], a:0,
+     e:"No would in the if-part. Type 2: If I were…", u:"У частині з if не буває would. Правильно: If I were…"},
+    {q:"If it ___ for the storm, we would have arrived on time.", o:["wasn't","hadn't been"], a:1,
+     e:"The storm was in the past and the result is past → hadn't been for.", u:"Буря була в минулому, наслідок теж у минулому → hadn't been for. «Якби не буря, ми б приїхали вчасно»."},
+    {q:"If I had gone to bed earlier, I ___ so tired now.", o:["wouldn't be","wouldn't have been"], a:0,
+     e:"Mixed: past cause + 'now' → would + V1.", u:"Змішаний тип: причина в минулому, але наслідок зараз (now) → wouldn't be."},
+    {q:"___ you hurry, you'll miss the bus.", o:["Unless","If"], a:0,
+     e:"Unless = if not: 'If you don't hurry, you'll miss the bus.'", u:"Unless = «якщо не»: «Якщо не поквапишся, спізнишся на автобус»."}
+  ]},
+  tense:{name:"Practice 5 · Tense forms", type:"type", items:[
+    {q:"Hi Tom! I ___ (write) to you from a café in Lisbon.", a:["am writing"], e:"Happening right now → Present Continuous.", u:"Відбувається просто зараз → Present Continuous: am writing."},
+    {q:"I ___ (arrive) here three days ago.", a:["arrived"], e:"'ago' → Past Simple.", u:"ago → Past Simple: arrived."},
+    {q:"I ___ (be) here for three days now and I love it.", a:["have been"], e:"'for … now' = from the past up to now → Present Perfect.", u:"«Уже три дні» (з минулого до зараз) → Present Perfect: have been."},
+    {q:"Every morning I ___ (have) breakfast by the river.", a:["have"], e:"'every morning' = habit → Present Simple.", u:"every morning — звичка → Present Simple: have."},
+    {q:"Yesterday, while I ___ (walk) in the old town, it started to rain.", a:["was walking"], e:"'while' + action in progress → Past Continuous.", u:"while — дія тривала в минулому → Past Continuous: was walking."},
+    {q:"I ___ (not/know) many words in Portuguese.", a:["don't know","do not know"], e:"know is a stative verb → no -ing → Present Simple.", u:"know — дієслово стану, без -ing → don't know."},
+    {q:"My train to Porto ___ (leave) at 7.15 tomorrow. It's in the timetable.", a:["leaves"], e:"Timetable → Present Simple, even for the future.", u:"Розклад → Present Simple навіть про майбутнє: leaves."},
+    {q:"I ___ (always/want) to see the ocean.", a:["have always wanted"], e:"From the past up to now → Present Perfect.", u:"«Завжди хотів» (досі) → Present Perfect: have always wanted."},
+    {q:"Tonight I ___ (meet) a friend. We arranged it last week.", a:["am meeting"], e:"A fixed plan → Present Continuous.", u:"Домовленість на майбутнє → Present Continuous: am meeting."},
+    {q:"When I got to the station, the train ___ (already/leave).", a:["had already left"], e:"It happened before another past action → Past Perfect.", u:"Сталося раніше за іншу минулу дію → Past Perfect: had already left."},
+    {q:"I think you ___ (love) this city too!", a:["will love"], e:"A prediction with 'I think' → will.", u:"Прогноз (I think) → will love."}
+  ]},
+  prep:{name:"Practice 6 · Prepositions", type:"type", items:[
+    {q:"Lviv is known ___ its coffee and old architecture.", a:["for"], e:"known for", u:"known for — відомий чимось"},
+    {q:"This hotel is very different ___ the one we stayed in last year.", a:["from"], e:"different from", u:"different from — відрізняється від"},
+    {q:"The village is surrounded ___ mountains.", a:["by"], e:"surrounded by", u:"surrounded by — оточений чимось"},
+    {q:"Prices range ___ 20 to 100 euros.", a:["from"], e:"range from … to", u:"range from … to — від … до"},
+    {q:"It's better to book tickets ___ advance.", a:["in"], e:"in advance", u:"in advance — заздалегідь"},
+    {q:"I'm really looking forward ___ the trip.", a:["to"], e:"look forward to", u:"look forward to — з нетерпінням чекати"},
+    {q:"We spent the whole day lounging ___ on the beach.", a:["around","about"], e:"lounge around / about", u:"lounge around / about — байдикувати"},
+    {q:"Are you interested ___ local history?", a:["in"], e:"interested in", u:"interested in — цікавитися чимось"},
+    {q:"We arrived ___ Amsterdam at 10.30 a.m.", a:["in"], e:"arrive in + city", u:"arrive in + місто"},
+    {q:"The holiday gave us a taste ___ simple country life.", a:["of"], e:"a taste of", u:"a taste of — відчути смак чогось"},
+    {q:"Many tourists are drawn ___ the old castle.", a:["to"], e:"drawn to", u:"drawn to — тягнутися до"},
+    {q:"Our train arrived ___ the station late.", a:["at"], e:"arrive at + station / airport", u:"arrive at + вокзал, аеропорт"}
+  ]}
+};
+
+const state = {};
+function norm(s){
+  return s.toLowerCase().replace(/[’`´]/g,"'").replace(/[.,!?;:]+$/g,"").replace(/\s+/g," ").trim()
+    .replace(/\bwon't\b/g,"will not").replace(/\bcan't\b/g,"cannot")
+    .replace(/n't\b/g," not").replace(/'m\b/g," am").replace(/'re\b/g," are")
+    .replace(/'ve\b/g," have").replace(/'ll\b/g," will").replace(/'d\b/g," would")
+    .replace(/^i /,"").replace(/^(he|she|we|they|you|it) /,"").replace(/\s+/g," ").trim();
+}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+const OK = `<span class="v">✓ Correct!</span> <span class="ua" style="display:inline">Правильно!</span>`;
+const NO = `<span class="v">✗ Not correct.</span> <span class="ua" style="display:inline">Неправильно.</span>`;
+
+function build(id){
+  const ex = EX[id], host = document.querySelector(`[data-ex-host="${id}"]`);
+  state[id] = ex.items.map(()=>null);
+  host.innerHTML = "";
+  ex.items.forEach((it,i)=>{
+    const d = document.createElement("div"); d.className="item";
+    let html;
+    if(ex.type==="choose"){
+      html = `<div class="q"><span>${esc(it.q).replace("___","<b>___</b>")}</span></div><div class="opts">`+
+        it.o.map((o,k)=>`<button class="opt" data-k="${k}">${esc(o)}</button>`).join("")+`</div>`;
+    } else {
+      const parts = it.q.split("___");
+      html = `<div class="q">${it.c?`<span class="ctx">${esc(it.c)}</span>`:""}<span>${esc(parts[0])}<input class="gap" id="${id}-${i}" aria-label="Answer ${i+1}" autocomplete="off" spellcheck="false" size="${Math.max(8,it.a[0].length+2)}">${esc(parts[1]||"")}</span><button class="mini">Check</button></div>`;
+    }
+    html += `<div class="fb"></div>`;
+    d.innerHTML = html; host.appendChild(d);
+    if(ex.type==="choose"){
+      d.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
+        const k=+b.dataset.k, ok=k===it.a;
+        state[id][i]=ok;
+        d.querySelectorAll(".opt").forEach((x,j)=>{x.disabled=true; if(j===it.a) x.classList.add(ok?"pick-ok":"show-ok");});
+        if(!ok) b.classList.add("pick-no");
+        d.classList.add(ok?"ok":"no");
+        d.querySelector(".fb").innerHTML = (ok?OK:`${NO} Correct answer: <b>${esc(it.o[it.a])}</b>.`) +
+          `<div style="margin-top:6px"><b>Why:</b> ${esc(it.e)}</div><span class="ua">${esc(it.u)}</span>`;
+        update(id);
+      }));
+    } else {
+      const inp=d.querySelector("input");
+      const run=()=>checkOne(id,i,d);
+      inp.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();run();}});
+      inp.addEventListener("blur",()=>{if(inp.value.trim()) run();});
+      d.querySelector(".mini").addEventListener("mousedown",e=>e.preventDefault());
+      d.querySelector(".mini").addEventListener("click",run);
+    }
+  });
+  update(id);
+}
+function checkOne(id,i,d){
+  const it=EX[id].items[i], inp=d.querySelector("input"), raw=inp.value.trim(), val=norm(raw);
+  if(!val){ d.classList.remove("ok","no"); state[id][i]=null; d.querySelector(".fb").innerHTML=""; update(id); return; }
+  const ok = it.a.some(a=>norm(a)===val);
+  state[id][i]=ok;
+  d.classList.toggle("ok",ok); d.classList.toggle("no",!ok);
+  d.querySelector(".fb").innerHTML = (ok?OK:`${NO} You wrote: <b>${esc(raw)}</b>. Correct answer: <b>${esc(it.a.join(" / "))}</b>.`) +
+    `<div style="margin-top:6px"><b>Why:</b> ${esc(it.e)}</div><span class="ua">${esc(it.u)}</span>`;
+  update(id);
+}
+function update(id){
+  const s=state[id], done=s.filter(x=>x!==null).length, ok=s.filter(x=>x).length;
+  const el=document.querySelector(`[data-score="${id}"]`);
+  if(el) el.textContent = done? `Score: ${ok} / ${s.length}` : "";
+  renderResults();
+}
+function renderResults(){
+  let tot=0, max=0, rows="";
+  for(const id in EX){
+    const s=state[id]||[], ok=s.filter(x=>x).length, done=s.filter(x=>x!==null).length;
+    tot+=ok; max+=EX[id].items.length;
+    rows+=`<div class="row"><span>${esc(EX[id].name)}</span><span>${done?ok+" / "+s.length:"not done"}</span></div>`;
+  }
+  document.getElementById("results").innerHTML=rows;
+  document.getElementById("total").textContent=`${tot} / ${max}`;
+}
+for(const id in EX) build(id);
+document.querySelectorAll("[data-reset]").forEach(b=>b.onclick=()=>build(b.dataset.reset));
+document.getElementById("resetAll").onclick=()=>{for(const id in EX) build(id);};
+
+/* slides */
+const slides=[...document.querySelectorAll(".slide")];
+let cur=0;
+const dots=document.getElementById("dots");
+slides.forEach((s,i)=>{
+  const b=document.createElement("button");
+  b.title=s.dataset.title; b.setAttribute("aria-label","Slide "+(i+1)+": "+s.dataset.title);
+  if(s.dataset.ex) b.classList.add("ex");
+  b.onclick=()=>go(i); dots.appendChild(b);
+});
+function go(i,noHash){
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,j)=>s.classList.toggle("on",j===cur));
+  [...dots.children].forEach((d,j)=>d.classList.toggle("on",j===cur));
+  document.getElementById("counter").textContent=`${cur+1} / ${slides.length}`;
+  document.getElementById("prog").style.width=((cur+1)/slides.length*100)+"%";
+  document.getElementById("prev").disabled=cur===0;
+  document.getElementById("next").disabled=cur===slides.length-1;
+  document.getElementById("main").scrollTop=0;
+  if(!noHash){ try{ history.replaceState(null,"","#s"+(cur+1)); }catch(e){} }
+}
+document.getElementById("prev").onclick=()=>go(cur-1);
+document.getElementById("next").onclick=()=>go(cur+1);
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(slides.indexOf(document.getElementById(b.dataset.go))));
+document.addEventListener("keydown",e=>{
+  if(e.target.tagName==="INPUT") return;
+  if(e.key==="ArrowRight"||e.key==="PageDown") go(cur+1);
+  if(e.key==="ArrowLeft"||e.key==="PageUp") go(cur-1);
+});
+function fromHash(){ const m=/^#s(\d+)$/.exec(location.hash); go(m?+m[1]-1:0,true); }
+window.addEventListener("hashchange",fromHash);
+fromHash();
+</script>
+</body>
+</html>
